@@ -17,6 +17,7 @@ spec:
       containers:
         - name: blt-health
           image: minerva45/blt-health:v1
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           envFrom:

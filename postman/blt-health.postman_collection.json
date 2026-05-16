@@ -17,7 +17,7 @@
         "url": "http://{{baseUrl}}/users",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"name\": \"Ada Lovelace\",\n  \"email\": \"ada.lovelace@example.com\"\n}"
+          "raw": "{\n  \"name\": \"User {{$timestamp}}\",\n  \"email\": \"user{{$timestamp}}@example.com\"\n}"
         }
       },
       "event": [
@@ -26,8 +26,8 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "const data = pm.response.json();",
-              "pm.collectionVariables.set('userId', data.id);"
+              "const createdUser = pm.response.json();",
+              "pm.collectionVariables.set('userId', createdUser.id);"
             ]
           }
         }

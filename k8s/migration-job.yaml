@@ -13,6 +13,7 @@ spec:
       containers:
         - name: migrate
           image: minerva45/blt-health:v1
+          imagePullPolicy: Always
           command: ["alembic", "upgrade", "head"]
           envFrom:
             - configMapRef:
