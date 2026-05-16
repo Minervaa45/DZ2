@@ -1,0 +1,12 @@
+newman
+
+BLT Health Users CRUD
+
+Create user: POST http://arch.homework/users -> 201 Created
+Get user:    GET  http://arch.homework/users/4 -> 200 OK
+Update user: PUT  http://arch.homework/users/4 -> 200 OK
+Delete user: DELETE http://arch.homework/users/4 -> 204 No Content
+
+iterations: 1
+requests: 4
+failed: 0
