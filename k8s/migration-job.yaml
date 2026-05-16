@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: blt-health-migrate
+spec:
+  backoffLimit: 3
+  template:
+    metadata:
+      labels:
+        app: blt-health
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: migrate
+          image: minerva45/blt-health:v1
+          command: ["alembic", "upgrade", "head"]
+          envFrom:
+            - configMapRef:
+                name: blt-health-config
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: blt-db-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: blt-db-credentials
+                  key: password

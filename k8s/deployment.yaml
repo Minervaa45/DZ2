@@ -19,9 +19,23 @@ spec:
           image: minerva45/blt-health:v1
           ports:
             - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: blt-health-config
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: blt-db-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: blt-db-credentials
+                  key: password
           readinessProbe:
             httpGet:
-              path: /health/
+              path: /health
               port: 8000
             initialDelaySeconds: 3
             periodSeconds: 5
@@ -29,7 +43,7 @@ spec:
             failureThreshold: 3
           livenessProbe:
             httpGet:
-              path: /health/
+              path: /health
               port: 8000
             initialDelaySeconds: 5
             periodSeconds: 10

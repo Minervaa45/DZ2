@@ -1,0 +1,7 @@
+auth:
+  username: blt_user
+  password: blt_password
+  database: blt
+primary:
+  persistence:
+    enabled: false
